@@ -1,0 +1,25 @@
+{
+  "name": "ninina31/framework",
+  "description": "mpwar framework",
+  "license": "Apache-2.0",
+  "keywords": [],
+  "homepage": "http://framework.dev",
+  "type": "project",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/ninina31/mpwar"
+    }
+  ],
+  "require":{
+    "php": ">=5.3.2",
+    "ninina31/mpwar": "dev-devel",
+    "twitter/bootstrap": "v3.0.0"
+  },
+  "minimun-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  }
+}

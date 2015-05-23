@@ -1,0 +1,17 @@
+{% extends "index.html.twig" %}
+{% block body %}
+
+  <div class='row'>
+    <div class='col-xs-12'>
+    <h3>Municipios por provincia {{ provincia }}</h3>
+      <ul class="list-group">
+        {% for mun in municipios %}
+          <li class="list-group-item">
+            {{ mun.nombre }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

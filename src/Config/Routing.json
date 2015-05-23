@@ -1,0 +1,22 @@
+{
+  "Home": {
+    "route": "\\Controller\\Home\\Home",
+    "controller": "",
+    "action": "home"
+  },
+  "Calculadora-Provincia": {
+    "route": "\\Controller\\CalculadoraProvincia\\CalculadoraProvincia",
+    "controller": "calculadora-provincia",
+    "action": "home"
+  },
+  "Home_GetItem": {
+    "route": "\\Controller\\Home\\Home",
+    "controller": "Home",
+    "action": "getItem"
+  },
+  "Municipios": {
+    "route": "\\Controller\\Municipios\\Municipios",
+    "controller": "municipios",
+    "action": "home"
+  }
+}

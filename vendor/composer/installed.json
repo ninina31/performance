@@ -1,0 +1,195 @@
+[
+    {
+        "name": "smarty/smarty",
+        "version": "v3.1.21",
+        "version_normalized": "3.1.21.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/smarty-php/smarty.git",
+            "reference": "1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/smarty-php/smarty/zipball/1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a",
+            "reference": "1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2"
+        },
+        "time": "2014-10-31 04:22:20",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "libs/Smarty.class.php",
+                "libs/SmartyBC.class.php",
+                "libs/sysplugins/smarty_security.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Monte Ohrt",
+                "email": "monte@ohrt.com"
+            },
+            {
+                "name": "Uwe Tews",
+                "email": "uwe.tews@googlemail.com"
+            },
+            {
+                "name": "Rodney Rehm",
+                "email": "rodney.rehm@medialize.de"
+            }
+        ],
+        "description": "Smarty - the compiling PHP template engine",
+        "homepage": "http://www.smarty.net",
+        "keywords": [
+            "templating"
+        ]
+    },
+    {
+        "name": "ninina31/mpwar",
+        "version": "dev-devel",
+        "version_normalized": "dev-devel",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ninina31/mpwar.git",
+            "reference": "ad9e44b853d490f09a84ca5a1a7c3cc1ba8e71e6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ninina31/mpwar/zipball/ad9e44b853d490f09a84ca5a1a7c3cc1ba8e71e6",
+            "reference": "ad9e44b853d490f09a84ca5a1a7c3cc1ba8e71e6",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2",
+            "smarty/smarty": "~3.1",
+            "twig/twig": "~1.0"
+        },
+        "time": "2015-03-22 20:01:46",
+        "type": "project",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Mpwar\\": "src/"
+            }
+        },
+        "license": [
+            "Apache-2.0"
+        ],
+        "description": "mpwar framework",
+        "homepage": "https://github.com/ninina31/mpwar",
+        "support": {
+            "source": "https://github.com/ninina31/mpwar/tree/devel",
+            "issues": "https://github.com/ninina31/mpwar/issues"
+        }
+    },
+    {
+        "name": "twig/twig",
+        "version": "v1.18.1",
+        "version_normalized": "1.18.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/twigphp/Twig.git",
+            "reference": "9f70492f44398e276d1b81c1b43adfe6751c7b7f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/twigphp/Twig/zipball/9f70492f44398e276d1b81c1b43adfe6751c7b7f",
+            "reference": "9f70492f44398e276d1b81c1b43adfe6751c7b7f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.7"
+        },
+        "time": "2015-04-19 08:30:27",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.18-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Twig_": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com",
+                "homepage": "http://fabien.potencier.org",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Armin Ronacher",
+                "email": "armin.ronacher@active-4.com",
+                "role": "Project Founder"
+            },
+            {
+                "name": "Twig Team",
+                "homepage": "http://twig.sensiolabs.org/contributors",
+                "role": "Contributors"
+            }
+        ],
+        "description": "Twig, the flexible, fast, and secure template language for PHP",
+        "homepage": "http://twig.sensiolabs.org",
+        "keywords": [
+            "templating"
+        ]
+    },
+    {
+        "name": "twitter/bootstrap",
+        "version": "v3.0.0",
+        "version_normalized": "3.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/twbs/bootstrap.git",
+            "reference": "e8a1df5f060bf7e6631554648e0abde150aedbe4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/e8a1df5f060bf7e6631554648e0abde150aedbe4",
+            "reference": "e8a1df5f060bf7e6631554648e0abde150aedbe4",
+            "shasum": ""
+        },
+        "time": "2013-08-19 21:18:20",
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "sugeng tigefa",
+                "email": "tigefa@gmail.com"
+            },
+            {
+                "name": "Jacob Thornton",
+                "email": "jacobthornton@gmail.com"
+            }
+        ],
+        "description": "Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.",
+        "homepage": "http://getbootstrap.com",
+        "keywords": [
+            "bootstrap",
+            "css"
+        ]
+    }
+]
