@@ -25,7 +25,7 @@
     {
       
       try {
-        $this->connection = new PDO("mysql:host={$this->host};dbname={$this->db_name}", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES  \'UTF8\''));
+        $this->connection = new PDO("mysql:host={$this->host};dbname={$this->db_name}", $this->username, $this->password);
       }
       catch(PDOException $exception){
         echo "Connection error: " . $exception->getMessage();
@@ -113,7 +113,7 @@
       try{
         $this->connect();
           
-        $query = "select m.nombre from municipios m, provincias p where p.id_provincia = m.id_provincia and p.provincia like ? COLLATE utf8_general_ci";
+        $query = "select m.nombre from municipios m, provincias p where p.id_provincia = m.id_provincia and p.provincia like ?";
 
         $this->prepareQuery($query);
 
