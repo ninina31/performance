@@ -27,7 +27,9 @@
         $provincias = $item;
       }
 
-      $vars_template = array('provincias' => $provincias);
+      $codPostales = array('07087', '89465', '41368', '54623', '74236', '45698', '45698', '09041', '12365', '12345');
+
+      $vars_template = array('provincias' => $provincias, 'codPostales', $codPostales);
 
       return new Response($template->render('Home/home.html.twig', $vars_template));
     }
