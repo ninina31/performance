@@ -17,7 +17,7 @@
       $json_array = json_decode($string, true);
       foreach ($json_array as $key => $value) {
         if ($value['controller'] == $controller) {
-          return new Route($value['route'], 'home', $uri_array);
+          return new Route($value['route'], $value['action'], $uri_array);
         }
       }
       return new Route("\\Controller\\Exceptions\\Exceptions", 'notFound');

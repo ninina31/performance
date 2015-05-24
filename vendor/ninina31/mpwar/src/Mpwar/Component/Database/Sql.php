@@ -25,7 +25,7 @@
     {
       
       try {
-        $this->connection = new PDO("mysql:host={$this->host};dbname={$this->db_name}", $this->username, $this->password);
+        $this->connection = new PDO("mysql:host={$this->host};dbname={$this->db_name}", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES  \'UTF8\''));
       }
       catch(PDOException $exception){
         echo "Connection error: " . $exception->getMessage();
@@ -68,32 +68,6 @@
       return $this->countRows() == 1;
     }
 
-    public function getItem($id)
-    {
-      try{
-        $this->connect();
-          
-        $query = "select * from items where id = ?";
-        $this->prepareQuery($query);
-        
-        $this->bindParameters(1, $id);
-        
-        $this->executeQuery();
-
-        if(!$this->isSingleResult()){
-          return false;
-        }
-          
-        $row = $this->fetch();
-      
-        return $row['name'];
-      }
-      //to handle error
-      catch(PDOException $exception){
-        echo "Error: " . $exception->getMessage();
-      }
-    }
-
     public function getProvinces()
     {
       try{
@@ -119,12 +93,12 @@
       try{
         $this->connect();
           
-        $query = "select * from municipios";
+        $query = "select nombre as `name` from municipios";
         $this->prepareQuery($query);
         
         $this->executeQuery();
         
-        $row = $this->fetch();
+        $row = $this->fetchAll();
       
         return $row;
       }
@@ -139,16 +113,16 @@
       try{
         $this->connect();
           
-        $query = "select m.nombre from municipios m, provincias p where p.id_provincia = m.id_provincia and p.provincia = ?";
-        
+        $query = "select m.nombre from municipios m, provincias p where p.id_provincia = m.id_provincia and p.provincia like ? COLLATE utf8_general_ci";
+
         $this->prepareQuery($query);
-        
-        $this->bindParameters(1, $name);
-        
+
+        $this->bindParameters(1, urldecode($name) . '%');
+
         $this->executeQuery();
 
         $row = $this->fetchAll();
-      
+
         return $row;
       }
       //to handle error
@@ -181,76 +155,4 @@
       }
     }
 
-    public function insertItem($name)
-    {
-      try{
-
-        $this->connect();
-
-        $query = "INSERT INTO items SET name = ?";
-
-        $this->prepareQuery($query);
-
-        $this->bindParameters(1, $name);
-
-        if($this->executeQuery()){
-          return true;
-        }else{
-          return false;
-        }
-      }
-      //to handle error
-      catch(PDOException $exception){
-        echo "Error: " . $exception->getMessage();
-      }
-    }
-
-    public function updateItem($oldName, $newName)
-    {
-      try{
-
-        $this->connect();
-
-        $query = "UPDATE items SET name = ? WHERE name = ?";
-
-        $this->prepareQuery($query);
-
-        $this->bindParameters(1, $newName);
-        $this->bindParameters(2, $oldName);
-
-        if($this->executeQuery()){
-          return true;
-        }else{
-          return false;
-        }
-      }
-      //to handle error
-      catch(PDOException $exception){
-        echo "Error: " . $exception->getMessage();
-      }
-    }
-
-    public function deleteItem($name)
-    {
-      try{
-
-        $this->connect();
-
-        $query = "DELETE FROM items WHERE name = ?";
-
-        $this->prepareQuery($query);
-
-        $this->bindParameters(1, $name);
-
-        if($this->executeQuery()){
-          return true;
-        }else{
-          return false;
-        }
-      }
-      //to handle error
-      catch(PDOException $exception){
-        echo "Error: " . $exception->getMessage();
-      }
-    }
   }

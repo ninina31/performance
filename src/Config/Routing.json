@@ -9,14 +9,14 @@
     "controller": "calculadora-provincia",
     "action": "home"
   },
-  "Home_GetItem": {
-    "route": "\\Controller\\Home\\Home",
-    "controller": "Home",
-    "action": "getItem"
-  },
   "Municipios": {
     "route": "\\Controller\\Municipios\\Municipios",
     "controller": "municipios",
     "action": "home"
+  },
+  "allMunicipios": {
+    "route": "\\Controller\\Municipios\\Municipios",
+    "controller": "allMunicipios",
+    "action": "allMunicipios"
   }
 }
