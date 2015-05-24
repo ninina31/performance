@@ -21,6 +21,7 @@
       $database = $container->get('database');
 
       $item = $database->getProvinces();
+      
       $info = 'No se encontro item';
 
       if (!empty($item)) {

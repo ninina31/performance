@@ -22,6 +22,7 @@
       $template = $container->get('twig');
       $database = $container->get('database');
       
+      
       if (empty($provincia)) {
         $municipios = array('municipios' => 'No se encontraron municipios');
         return new Response($template->render('Municipios/home.html.twig', $municipios));

@@ -13,7 +13,7 @@
     protected $connection;
     protected $statement;
 
-    function __construct($host="localhost", $db_name="performance", $username="root", $password="ninina31")
+    function __construct($host="localhost", $db_name="sphinx_demo", $username="root", $password="root")
     {
       $this->host = $host;
       $this->db_name = $db_name;
@@ -25,7 +25,7 @@
     {
       
       try {
-        $this->connection = new PDO("mysql:host={$this->host};dbname={$this->db_name}", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES  \'UTF8\''));
+        $this->connection = new PDO("mysql:host={$this->host};dbname={$this->db_name}", $this->username, $this->password);//, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES  \'UTF8\''));
       }
       catch(PDOException $exception){
         echo "Connection error: " . $exception->getMessage();
@@ -79,7 +79,6 @@
         $this->executeQuery();
         
         $row = $this->fetchAll();
-      
         return $row;
       }
       //to handle error
@@ -113,7 +112,7 @@
       try{
         $this->connect();
           
-        $query = "select m.nombre from municipios m, provincias p where p.id_provincia = m.id_provincia and p.provincia like ? COLLATE utf8_general_ci";
+        $query = "select m.nombre from municipios m, provincias p where p.id_provincia = m.id_provincia and p.provincia like ? ";
 
         $this->prepareQuery($query);
 
