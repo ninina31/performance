@@ -26,8 +26,8 @@
         </ul>
         <nav>
           <ul class="pager">
-            <li class="previous"><a href="{{ anterior }}"><span aria-hidden="true">&larr;</span> Anterior</a></li>
-            <li class="next"><a href="{{ pagina }}">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
+            <li class="previous {{ firstPage }}"><a href="{{ anterior }}"><span aria-hidden="true">&larr;</span> Anterior</a></li>
+            <li class="next {{ lastPage }}"><a href="{{ pagina }}">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
           </ul>
         </nav>
       </div>
