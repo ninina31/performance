@@ -7,11 +7,12 @@
       <ul class="list-group">
         {% for mun in municipios %}
           <li class="list-group-item">
-            {{ mun.nombre }}
+            {{ mun.attrs.municipio }}
           </li>
         {% endfor %}
       </ul>
     </div>
+	<a href={{ anterior }}>Página anterior</a> <------> <a href={{ pagina }}>Página siguiente</a>
   </div>
 
 {% endblock %}

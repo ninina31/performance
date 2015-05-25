@@ -13,7 +13,7 @@
     protected $connection;
     protected $statement;
 
-    function __construct($host="localhost", $db_name="performance", $username="root", $password="ninina31")
+    function __construct($host="localhost", $db_name="sphinx_demo", $username="root", $password="strongpassword")
     {
       $this->host = $host;
       $this->db_name = $db_name;

@@ -11,6 +11,7 @@
     public $cookies;
     public $server;
     public $session;
+	public $route;
 
     public function __construct()
     {

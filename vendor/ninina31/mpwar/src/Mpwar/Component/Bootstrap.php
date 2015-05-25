@@ -18,12 +18,13 @@
 
     public function executeController(Route $route, Request $request)
     {
-      $controller = $route->getController();
+      $request->route = $route;
+	  $controller = $route->getController();
       $action = $route->getAction();
       $vars = $this->getVarsForController($request, $route->getVars());
       return call_user_func_array(
         array(
-          new $controller(), 
+          new $controller(),
           $route->getAction()
         ), 
         $vars
