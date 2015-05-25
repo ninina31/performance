@@ -1,7 +1,7 @@
 <?php
 
   namespace Mpwar\Component\Database;
-  use Mpwar\Component\Database\DBInterface;
+  use Mpwar\Component\Cache\MemoryCache;
   use PDO;
 
   class Sql implements DBInterface
@@ -68,43 +68,30 @@
       return $this->countRows() == 1;
     }
 
-    public function getItem($id)
-    {
-      try{
-        $this->connect();
-          
-        $query = "select * from items where id = ?";
-        $this->prepareQuery($query);
-        
-        $this->bindParameters(1, $id);
-        
-        $this->executeQuery();
-
-        if(!$this->isSingleResult()){
-          return false;
-        }
-          
-        $row = $this->fetch();
-      
-        return $row['name'];
-      }
-      //to handle error
-      catch(PDOException $exception){
-        echo "Error: " . $exception->getMessage();
-      }
-    }
-
     public function getProvinces()
     {
       try{
         $this->connect();
           
         $query = "select * from provincias";
+
         $this->prepareQuery($query);
+
+        $cache = new MemoryCache();
+
+        $keyName = $cache->getKeyName(array('getProvinces'));
+
+        $cache_result = $cache->get($keyName);
+
+        if (!empty($cache_result)) {
+          return $cache_result;
+        }
         
         $this->executeQuery();
         
         $row = $this->fetchAll();
+
+        $cache->set($keyName, $row, 30);
       
         return $row;
       }
@@ -119,12 +106,24 @@
       try{
         $this->connect();
           
-        $query = "select * from municipios";
+        $query = "select nombre as `name` from municipios";
         $this->prepareQuery($query);
+
+        $cache = new MemoryCache();
+
+        $keyName = $cache->getKeyName(array('getMunicipalities'));
+
+        $cache_result = $cache->get($keyName);
+
+        if (!empty($cache_result)) {
+          return $cache_result;
+        }
         
         $this->executeQuery();
         
-        $row = $this->fetch();
+        $row = $this->fetchAll();
+
+        $cache->set($keyName, $row);
       
         return $row;
       }
@@ -139,16 +138,30 @@
       try{
         $this->connect();
           
-        $query = "select m.nombre from municipios m, provincias p where p.id_provincia = m.id_provincia and p.provincia = ?";
-        
+        $query = "select m.nombre from municipios m, provincias p where p.id_provincia = m.id_provincia and p.provincia like ?";
+
         $this->prepareQuery($query);
-        
-        $this->bindParameters(1, $name);
-        
+
+        $parsedName = urldecode($name) . '%';
+
+        $this->bindParameters(1, $parsedName);
+
+        $cache = new MemoryCache();
+
+        $keyName = $cache->getKeyName(array('getMunicipalityByProvince', $parsedName));
+
+        $cache_result = $cache->get($keyName);
+
+        if (!empty($cache_result)) {
+          return $cache_result;
+        }
+
         $this->executeQuery();
 
         $row = $this->fetchAll();
-      
+
+        $cache->set($keyName, $row);
+
         return $row;
       }
       //to handle error
@@ -164,6 +177,16 @@
         $this->connect();
           
         $query = "select p.provincia from provincias p where p.id_provincia = ?";
+
+        $cache = new MemoryCache();
+
+        $keyName = $cache->getKeyName(array('getMunicipalityFromPC', $pc));
+
+        $cache_result = $cache->get($keyName);
+
+        if (!empty($cache_result)) {
+          return $cache_result;
+        }
         
         $this->prepareQuery($query);
         
@@ -172,6 +195,8 @@
         $this->executeQuery();
 
         $row = $this->fetch();
+
+        $cache->set($keyName, $row);
       
         return $row;
       }
@@ -181,76 +206,4 @@
       }
     }
 
-    public function insertItem($name)
-    {
-      try{
-
-        $this->connect();
-
-        $query = "INSERT INTO items SET name = ?";
-
-        $this->prepareQuery($query);
-
-        $this->bindParameters(1, $name);
-
-        if($this->executeQuery()){
-          return true;
-        }else{
-          return false;
-        }
-      }
-      //to handle error
-      catch(PDOException $exception){
-        echo "Error: " . $exception->getMessage();
-      }
-    }
-
-    public function updateItem($oldName, $newName)
-    {
-      try{
-
-        $this->connect();
-
-        $query = "UPDATE items SET name = ? WHERE name = ?";
-
-        $this->prepareQuery($query);
-
-        $this->bindParameters(1, $newName);
-        $this->bindParameters(2, $oldName);
-
-        if($this->executeQuery()){
-          return true;
-        }else{
-          return false;
-        }
-      }
-      //to handle error
-      catch(PDOException $exception){
-        echo "Error: " . $exception->getMessage();
-      }
-    }
-
-    public function deleteItem($name)
-    {
-      try{
-
-        $this->connect();
-
-        $query = "DELETE FROM items WHERE name = ?";
-
-        $this->prepareQuery($query);
-
-        $this->bindParameters(1, $name);
-
-        if($this->executeQuery()){
-          return true;
-        }else{
-          return false;
-        }
-      }
-      //to handle error
-      catch(PDOException $exception){
-        echo "Error: " . $exception->getMessage();
-      }
-    }
   }

@@ -4,6 +4,7 @@
   use Mpwar\Controller\BaseController;
   use Mpwar\Component\Request\Request;
   use Mpwar\Component\Response\Response;
+  use Mpwar\Component\Response\JsonResponse;
   use Component\Container;
   use Mpwar\Sphinx\SearchSphinx;
 
@@ -56,5 +57,22 @@
 	  }
 
       return new Response($template->render('Municipios/home.html.twig', $vars_template));
+    }
+
+    public function allMunicipios(Request $request, $provincia = '')
+    {
+
+      $container = new Container();
+      $template = $container->get('twig');
+      $database = $container->get('database');
+
+      $item = $database->getMunicipalities();
+      $municipios = array();
+
+      if (!empty($item)) {
+        $municipios = $item;
+      }
+
+      return new JsonResponse($municipios);
     }
   }

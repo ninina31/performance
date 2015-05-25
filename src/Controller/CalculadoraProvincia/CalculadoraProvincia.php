@@ -24,6 +24,11 @@
         return new Response($template->render('CalculadoraProvincia/home.html.twig', []));
       } else {
 
+        if (!is_numeric($cp)) {
+          $provincias = array('provincia' => 'El código de la provincia es inválido');
+          return new Response($template->render('CalculadoraProvincia/result.html.twig', $provincias));
+        }
+
         $codpostal = substr($cp, 0, 2);
 
         $item = $database->getMunicipalityFromPC($codpostal);
