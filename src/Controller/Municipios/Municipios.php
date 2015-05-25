@@ -46,8 +46,6 @@
       return new Response($template->render('Municipios/home.html.twig', $municipios));
     }
 
-        
-    
     $datos = $item[0]['matches'];
     $total = $item[0]['total'];
 
@@ -57,14 +55,12 @@
     $anteriorPage = $paginado[1] - 1;
     
     if ($paginado[1] == 0) {
-      $concat = '';
-      $concat = $provincia . '/' . $nextPage;
-      $vars_template = array('municipios' => $datos, 'pagina' => $concat, 'firstPage' => 'disabled');
+      $vars_template = array('municipios' => $datos, 'pagina' => $concat, 'firstPage' => 'disabled', 'provincia' => $provincia);
     } elseif (($paginado[1]) == $limite) {
-      $vars_template = array('municipios' => $datos, 'pagina' => $concat, 'lastPage' => 'disabled');
+      $vars_template = array('municipios' => $datos, 'pagina' => $concat, 'lastPage' => 'disabled', 'provincia' => $provincia);
     }
     else { 
-      	$vars_template = array('municipios' => $datos, 'pagina' => $nextPage, 'anterior' => $anteriorPage);
+        $vars_template = array('municipios' => $datos, 'pagina' => $nextPage, 'anterior' => $anteriorPage, 'provincia' => $provincia);
     }
       return new Response($template->render('Municipios/home.html.twig', $vars_template));
     }
