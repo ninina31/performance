@@ -43,29 +43,28 @@
     }
     else {
       $municipios = array('municipios' => 'No se encontraron municipios');
-    }
-
-    $datos = $item[0]['matches'];
-    $totalMunicipios = $item[0]['total'];
-
-    $limite = ceil($totalMunicipios / 10);
-
-    if ($limite == $paginado[1] + 1) {
-      $municipios = array('municipios' => 'Indice inválido');
       return new Response($template->render('Municipios/home.html.twig', $municipios));
     }
+
+        
+    
+    $datos = $item[0]['matches'];
+    $total = $item[0]['total'];
+
+    $limite = floor($total / 10);
     
     $nextPage = $paginado[1] + 1;
     $anteriorPage = $paginado[1] - 1;
     
     if ($paginado[1] == 0) {
+      $concat = '';
       $concat = $provincia . '/' . $nextPage;
       $vars_template = array('municipios' => $datos, 'pagina' => $concat, 'firstPage' => 'disabled');
-    } elseif (($paginado[1] - 1) == $limite) {
+    } elseif (($paginado[1]) == $limite) {
       $vars_template = array('municipios' => $datos, 'pagina' => $concat, 'lastPage' => 'disabled');
     }
-    else {
-      $vars_template = array('municipios' => $datos, 'pagina' => $nextPage, 'anterior' => $anteriorPage);
+    else { 
+      	$vars_template = array('municipios' => $datos, 'pagina' => $nextPage, 'anterior' => $anteriorPage);
     }
       return new Response($template->render('Municipios/home.html.twig', $vars_template));
     }
