@@ -1,6 +1,18 @@
 {% extends "index.html.twig" %}
 {% block body %}
 
+
+  <!--div class='row'>
+    <div class='col-xs-12'>
+    <h3>Municipios por provincia {{ provincia }}</h3>
+      <ul class="list-group">
+        {% for mun in municipios %}
+          <li class="list-group-item">
+            {{ mun.attrs.municipio }}
+          </li>
+        {% endfor %}
+      </ul-->
+
   <div class='col-xs-12'>
     <div class='row'>
       <div class='col-xs-12'>
@@ -8,14 +20,14 @@
         <ul class="list-group">
           {% for mun in municipios %}
             <li class="list-group-item">
-              {{ mun.nombre }}
+              {{ mun.attrs.municipio }}
             </li>
           {% endfor %}
         </ul>
         <nav>
           <ul class="pager">
-            <li class="previous"><a href="municipios/{{ provincia }}/{{ numero }}"><span aria-hidden="true">&larr;</span> Anterior</a></li>
-            <li class="next"><a href="municipios/{{ provincia }}/{{ numero }}">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
+            <li class="previous {{ firstPage }}"><a href="{{ provincia }}/{{ anterior }}"><span aria-hidden="true">&larr;</span> Anterior</a></li>
+            <li class="next {{ lastPage }}"><a href="{{ provincia }}/{{ siguiente }}">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
           </ul>
         </nav>
       </div>
