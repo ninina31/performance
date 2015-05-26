@@ -1,5 +1,4 @@
-<?php
-
+<?php 
   namespace Mpwar\Component\Database;
   use Mpwar\Component\Cache\MemoryCache;
   use PDO;
@@ -13,7 +12,7 @@
     protected $connection;
     protected $statement;
 
-    function __construct($host="localhost", $db_name="sphinx_demo", $username="root", $password="strongpassword")
+    function __construct($host="localhost", $db_name="performance", $username="root", $password="wbvQodJWGZ")
     {
       $this->host = $host;
       $this->db_name = $db_name;
