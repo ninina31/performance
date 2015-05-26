@@ -51,9 +51,15 @@
 
     $limite = floor($total / 10);
     
-    $nextPage = $paginado[1] + 1;
-    $anteriorPage = $paginado[1] - 1;
+    if(($paginado[1] + 1) < $limite)
+      $nextPage = $paginado[1] + 1;
     
+    if(($paginado[1] - 1) > 0)
+      $anteriorPage = $paginado[1] - 1;
+    else
+      $anteriorPage = 0;
+
+
     if ($paginado[1] == 0) {
       $vars_template = array('municipios' => $datos, 'anterior' => $anteriorPage, 'siguiente' => $nextPage, 'firstPage' => 'disabled', 'provincia' => $provincia);
     } elseif (($paginado[1]) == $limite) {
