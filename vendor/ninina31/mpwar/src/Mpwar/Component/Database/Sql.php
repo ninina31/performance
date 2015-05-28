@@ -1,7 +1,6 @@
-<?php
-
+<?php 
   namespace Mpwar\Component\Database;
-  use Mpwar\Component\Database\DBInterface;
+  use Mpwar\Component\Cache\MemoryCache;
   use PDO;
 
   class Sql implements DBInterface
@@ -13,7 +12,7 @@
     protected $connection;
     protected $statement;
 
-    function __construct($host="localhost", $db_name="performance", $username="root", $password="ninina31")
+    function __construct($host="localhost", $db_name="performance", $username="root", $password="wbvQodJWGZ")
     {
       $this->host = $host;
       $this->db_name = $db_name;
@@ -25,7 +24,7 @@
     {
       
       try {
-        $this->connection = new PDO("mysql:host={$this->host};dbname={$this->db_name}", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES  \'UTF8\''));
+        $this->connection = new PDO("mysql:host={$this->host};dbname={$this->db_name}", $this->username, $this->password);//, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES  \'UTF8\''));
       }
       catch(PDOException $exception){
         echo "Connection error: " . $exception->getMessage();
@@ -74,11 +73,24 @@
         $this->connect();
           
         $query = "select * from provincias";
+
         $this->prepareQuery($query);
+
+        $cache = new MemoryCache();
+
+        $keyName = $cache->getKeyName(array('getProvinces'));
+
+        $cache_result = $cache->get($keyName);
+
+        if (!empty($cache_result)) {
+          return $cache_result;
+        }
         
         $this->executeQuery();
         
         $row = $this->fetchAll();
+
+        $cache->set($keyName, $row, 30);
       
         return $row;
       }
@@ -95,10 +107,22 @@
           
         $query = "select nombre as `name` from municipios";
         $this->prepareQuery($query);
+
+        $cache = new MemoryCache();
+
+        $keyName = $cache->getKeyName(array('getMunicipalities'));
+
+        $cache_result = $cache->get($keyName);
+
+        if (!empty($cache_result)) {
+          return $cache_result;
+        }
         
         $this->executeQuery();
         
         $row = $this->fetchAll();
+
+        $cache->set($keyName, $row);
       
         return $row;
       }
@@ -112,16 +136,30 @@
     {
       try{
         $this->connect();
-          
-        $query = "select m.nombre from municipios m, provincias p where p.id_provincia = m.id_provincia and p.provincia like ? COLLATE utf8_general_ci";
+
+        $query = "select m.nombre from municipios m, provincias p where p.id_provincia = m.id_provincia and p.provincia like ? ";
 
         $this->prepareQuery($query);
 
-        $this->bindParameters(1, urldecode($name) . '%');
+        $parsedName = urldecode($name) . '%';
+
+        $this->bindParameters(1, $parsedName);
+
+        $cache = new MemoryCache();
+
+        $keyName = $cache->getKeyName(array('getMunicipalityByProvince', $parsedName));
+
+        $cache_result = $cache->get($keyName);
+
+        if (!empty($cache_result)) {
+          return $cache_result;
+        }
 
         $this->executeQuery();
 
         $row = $this->fetchAll();
+
+        $cache->set($keyName, $row);
 
         return $row;
       }
@@ -138,6 +176,16 @@
         $this->connect();
           
         $query = "select p.provincia from provincias p where p.id_provincia = ?";
+
+        $cache = new MemoryCache();
+
+        $keyName = $cache->getKeyName(array('getMunicipalityFromPC', $pc));
+
+        $cache_result = $cache->get($keyName);
+
+        if (!empty($cache_result)) {
+          return $cache_result;
+        }
         
         $this->prepareQuery($query);
         
@@ -146,6 +194,8 @@
         $this->executeQuery();
 
         $row = $this->fetch();
+
+        $cache->set($keyName, $row);
       
         return $row;
       }

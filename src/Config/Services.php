@@ -11,3 +11,7 @@ $container['twig'] = array(
 $container['smarty'] = array(
   'class' => 'Mpwar\Component\Template\SmartyTemplate'
 );
+
+$container['redis'] = array(
+    'class' => 'Mpwar\Component\Predis\Redis'
+);

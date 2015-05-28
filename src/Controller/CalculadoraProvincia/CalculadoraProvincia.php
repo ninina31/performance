@@ -19,6 +19,7 @@
       $container = new Container();
       $template = $container->get('twig');
       $database = $container->get('database');
+      $redis = $container->get('redis');
 
       if (empty($cp)) {
         return new Response($template->render('CalculadoraProvincia/home.html.twig', []));
@@ -36,6 +37,24 @@
 
         if (!empty($item)) {
           $provincias = $item;
+          $redisConexion = $redis->connect();
+          //$r = $request->redis;
+          //$r->zAdd('key', 0, $cp);
+
+          $redisConexion->zIncrBy('site_visits', 1, $cp);
+
+          //$r->setnx($cp, '0');
+          //$r->incr($cp);
+          //$value = $r->get($cp);
+          //$value2 = $r->get('key1');
+
+
+          //$r->zAdd('$item', 2.5, 'val2');
+          //$value = $r->zScore($item, 'val');
+          //$r->set(foo,bar);
+          //$value = $r->get('site_visits');
+          //echo $value . "Siii";
+
         }
 
         return new Response($template->render('CalculadoraProvincia/result.html.twig', $provincias));
