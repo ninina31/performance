@@ -1,7 +1,7 @@
 <?php
 
 namespace Mpwar\Component\Predis;
-require "src/autoloader.php";
+require "src/Autoloader.php";
 
 class Redis
 {

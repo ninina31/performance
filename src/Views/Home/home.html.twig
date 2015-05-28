@@ -1,18 +1,254 @@
 {% extends "index.html.twig" %}
 {% block body %}
 
-  <div class='col-xs-12'>
-    <div class='row'>
-      <div class='col-xs-12'>
-        <form action='/calculadora-provincia' id='calculadora'>
-          <div class="form-group">
-            <label for="codpostal">Código Postal</label>
-            <input minlength=5 maxlength=5 type="text" class="form-control" id="codpostal" placeholder="Ingrese código postal">
-          </div>
-          <button type="submit" class="btn btn-default">Enviar</button>
-        </form>
-      </div>
+  <div class='col-xs-3'>
+    <h3>Provincias</h3>
+    <div class="list-group">
+      {% for prov in provincias %}
+        <a href="/municipios/{{ prov.provincia }}" class="list-group-item">
+          {{ prov.provincia }}
+        </a>
+      {% endfor %}
     </div>
+  </div>
+  <div class='col-xs-6'>
+    <h3>Provincias más visitadas</h3>
+    <div class="row">
+      <div class="col-xs-6">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal0" tabindex="-1" role="dialog" aria-labelledby="myModal0Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModal0Label">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed magna et orci vulputate sollicitudin. Vivamus enim nunc, eleifend quis lacinia quis, pharetra a nulla. Curabitur lectus erat, facilisis sit amet orci lobortis, tincidunt auctor mauris. Mauris tincidunt maximus ipsum, non ultricies nunc tempus nec. Curabitur non felis vitae dolor pharetra tempor iaculis ut neque. Phasellus varius dapibus erat, vitae lobortis libero efficitur vitae. Morbi sit amet fringilla ipsum. Donec eleifend dictum eros, eu finibus sem suscipit eget. Quisque eleifend sollicitudin porta. Donec ultrices ut augue ut convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus nec nisl nec enim condimentum posuere auctor quis eros. Quisque mollis dapibus tristique. Pellentesque lacinia molestie consectetur.
+
+Phasellus mollis sapien placerat nibh placerat fringilla. Nullam blandit porta lectus at maximus. Mauris euismod lorem a turpis eleifend, eget fermentum diam facilisis. Maecenas hendrerit risus id maximus mollis. Cras ac diam non nisi pulvinar volutpat sed iaculis arcu. Nullam lacus nunc, condimentum at purus eu, placerat venenatis libero. Sed mattis velit ac nulla porta, sit amet vulputate nulla imperdiet.
+
+Donec pulvinar nibh ut tellus dignissim egestas. Aliquam sed lacinia nibh. Nulla sed nisl at ex volutpat sollicitudin cursus vel ligula. Proin hendrerit dui a risus facilisis, nec euismod dolor semper. Aenean eget efficitur odio, in commodo sem. Sed convallis felis vitae diam rhoncus, vitae efficitur lectus rutrum. Nam luctus augue ligula, eget feugiat nisi imperdiet nec.
+
+Sed id elementum eros, tempor ultrices augue. Morbi ac turpis efficitur, viverra nibh non, aliquam libero. Aliquam laoreet risus diam, a venenatis est venenatis ac. Morbi sed tellus mollis, efficitur odio et, varius neque. Vivamus bibendum nisi justo, sit amet rhoncus risus scelerisque quis. In a nisi in nulla porttitor interdum. Cras bibendum mattis arcu, in porttitor quam viverra ac. Nullam et congue felis. Pellentesque posuere justo eget tempor volutpat. Sed in lorem a sapien dignissim dapibus id sed ipsum. Nulla non libero eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc malesuada metus vel mi pellentesque dignissim. Sed vel eros non risus consectetur finibus. Nam eleifend imperdiet quam, et suscipit justo sollicitudin eget.
+
+Nullam blandit velit vel felis pretium molestie. Pellentesque maximus ullamcorper eros nec vulputate. Aliquam tempor tortor massa, non efficitur lectus gravida ac. Nam vestibulum odio a arcu gravida scelerisque. Suspendisse potenti. Maecenas eu purus semper nisi accumsan ullamcorper. Aliquam vitae pharetra orci, eget auctor dui. Integer in neque nec nunc tincidunt ornare at ut nisi. Ut fringilla nisi eu nisl finibus mattis. Quisque et tortor faucibus, efficitur enim vulputate, gravida ex. Duis egestas auctor est vitae bibendum. Nullam non dapibus nisi, eu accumsan enim. Donec vitae odio ipsum. Vestibulum feugiat mollis enim a vestibulum.
+
+Aenean quis ultricies leo. Integer at risus est. Nulla facilisi. Phasellus molestie nisi nec nisi laoreet fermentum. Nunc felis dui, cursus id auctor at, ultricies quis risus. Mauris ac mi in lacus faucibus facilisis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce placerat tristique nulla quis eleifend.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="thumbnail">
+          <img src="assets/images/0415701.jpg" alt="...">
+          <div class="caption">
+            <h3>Thumbnail label</h3>
+            <p>...</p>
+            <p><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal0">Launch demo modal</button></p>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModal1Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModal1Label">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed magna et orci vulputate sollicitudin. Vivamus enim nunc, eleifend quis lacinia quis, pharetra a nulla. Curabitur lectus erat, facilisis sit amet orci lobortis, tincidunt auctor mauris. Mauris tincidunt maximus ipsum, non ultricies nunc tempus nec. Curabitur non felis vitae dolor pharetra tempor iaculis ut neque. Phasellus varius dapibus erat, vitae lobortis libero efficitur vitae. Morbi sit amet fringilla ipsum. Donec eleifend dictum eros, eu finibus sem suscipit eget. Quisque eleifend sollicitudin porta. Donec ultrices ut augue ut convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus nec nisl nec enim condimentum posuere auctor quis eros. Quisque mollis dapibus tristique. Pellentesque lacinia molestie consectetur.
+
+Phasellus mollis sapien placerat nibh placerat fringilla. Nullam blandit porta lectus at maximus. Mauris euismod lorem a turpis eleifend, eget fermentum diam facilisis. Maecenas hendrerit risus id maximus mollis. Cras ac diam non nisi pulvinar volutpat sed iaculis arcu. Nullam lacus nunc, condimentum at purus eu, placerat venenatis libero. Sed mattis velit ac nulla porta, sit amet vulputate nulla imperdiet.
+
+Donec pulvinar nibh ut tellus dignissim egestas. Aliquam sed lacinia nibh. Nulla sed nisl at ex volutpat sollicitudin cursus vel ligula. Proin hendrerit dui a risus facilisis, nec euismod dolor semper. Aenean eget efficitur odio, in commodo sem. Sed convallis felis vitae diam rhoncus, vitae efficitur lectus rutrum. Nam luctus augue ligula, eget feugiat nisi imperdiet nec.
+
+Sed id elementum eros, tempor ultrices augue. Morbi ac turpis efficitur, viverra nibh non, aliquam libero. Aliquam laoreet risus diam, a venenatis est venenatis ac. Morbi sed tellus mollis, efficitur odio et, varius neque. Vivamus bibendum nisi justo, sit amet rhoncus risus scelerisque quis. In a nisi in nulla porttitor interdum. Cras bibendum mattis arcu, in porttitor quam viverra ac. Nullam et congue felis. Pellentesque posuere justo eget tempor volutpat. Sed in lorem a sapien dignissim dapibus id sed ipsum. Nulla non libero eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc malesuada metus vel mi pellentesque dignissim. Sed vel eros non risus consectetur finibus. Nam eleifend imperdiet quam, et suscipit justo sollicitudin eget.
+
+Nullam blandit velit vel felis pretium molestie. Pellentesque maximus ullamcorper eros nec vulputate. Aliquam tempor tortor massa, non efficitur lectus gravida ac. Nam vestibulum odio a arcu gravida scelerisque. Suspendisse potenti. Maecenas eu purus semper nisi accumsan ullamcorper. Aliquam vitae pharetra orci, eget auctor dui. Integer in neque nec nunc tincidunt ornare at ut nisi. Ut fringilla nisi eu nisl finibus mattis. Quisque et tortor faucibus, efficitur enim vulputate, gravida ex. Duis egestas auctor est vitae bibendum. Nullam non dapibus nisi, eu accumsan enim. Donec vitae odio ipsum. Vestibulum feugiat mollis enim a vestibulum.
+
+Aenean quis ultricies leo. Integer at risus est. Nulla facilisi. Phasellus molestie nisi nec nisi laoreet fermentum. Nunc felis dui, cursus id auctor at, ultricies quis risus. Mauris ac mi in lacus faucibus facilisis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce placerat tristique nulla quis eleifend.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="thumbnail">
+          <img src="assets/images/0415702.jpg" alt="...">
+          <div class="caption">
+            <h3>Thumbnail label</h3>
+            <p>...</p>
+            <p><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
+          Launch demo modal
+        </button></p>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal2Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModal2Label">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed magna et orci vulputate sollicitudin. Vivamus enim nunc, eleifend quis lacinia quis, pharetra a nulla. Curabitur lectus erat, facilisis sit amet orci lobortis, tincidunt auctor mauris. Mauris tincidunt maximus ipsum, non ultricies nunc tempus nec. Curabitur non felis vitae dolor pharetra tempor iaculis ut neque. Phasellus varius dapibus erat, vitae lobortis libero efficitur vitae. Morbi sit amet fringilla ipsum. Donec eleifend dictum eros, eu finibus sem suscipit eget. Quisque eleifend sollicitudin porta. Donec ultrices ut augue ut convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus nec nisl nec enim condimentum posuere auctor quis eros. Quisque mollis dapibus tristique. Pellentesque lacinia molestie consectetur.
+
+Phasellus mollis sapien placerat nibh placerat fringilla. Nullam blandit porta lectus at maximus. Mauris euismod lorem a turpis eleifend, eget fermentum diam facilisis. Maecenas hendrerit risus id maximus mollis. Cras ac diam non nisi pulvinar volutpat sed iaculis arcu. Nullam lacus nunc, condimentum at purus eu, placerat venenatis libero. Sed mattis velit ac nulla porta, sit amet vulputate nulla imperdiet.
+
+Donec pulvinar nibh ut tellus dignissim egestas. Aliquam sed lacinia nibh. Nulla sed nisl at ex volutpat sollicitudin cursus vel ligula. Proin hendrerit dui a risus facilisis, nec euismod dolor semper. Aenean eget efficitur odio, in commodo sem. Sed convallis felis vitae diam rhoncus, vitae efficitur lectus rutrum. Nam luctus augue ligula, eget feugiat nisi imperdiet nec.
+
+Sed id elementum eros, tempor ultrices augue. Morbi ac turpis efficitur, viverra nibh non, aliquam libero. Aliquam laoreet risus diam, a venenatis est venenatis ac. Morbi sed tellus mollis, efficitur odio et, varius neque. Vivamus bibendum nisi justo, sit amet rhoncus risus scelerisque quis. In a nisi in nulla porttitor interdum. Cras bibendum mattis arcu, in porttitor quam viverra ac. Nullam et congue felis. Pellentesque posuere justo eget tempor volutpat. Sed in lorem a sapien dignissim dapibus id sed ipsum. Nulla non libero eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc malesuada metus vel mi pellentesque dignissim. Sed vel eros non risus consectetur finibus. Nam eleifend imperdiet quam, et suscipit justo sollicitudin eget.
+
+Nullam blandit velit vel felis pretium molestie. Pellentesque maximus ullamcorper eros nec vulputate. Aliquam tempor tortor massa, non efficitur lectus gravida ac. Nam vestibulum odio a arcu gravida scelerisque. Suspendisse potenti. Maecenas eu purus semper nisi accumsan ullamcorper. Aliquam vitae pharetra orci, eget auctor dui. Integer in neque nec nunc tincidunt ornare at ut nisi. Ut fringilla nisi eu nisl finibus mattis. Quisque et tortor faucibus, efficitur enim vulputate, gravida ex. Duis egestas auctor est vitae bibendum. Nullam non dapibus nisi, eu accumsan enim. Donec vitae odio ipsum. Vestibulum feugiat mollis enim a vestibulum.
+
+Aenean quis ultricies leo. Integer at risus est. Nulla facilisi. Phasellus molestie nisi nec nisi laoreet fermentum. Nunc felis dui, cursus id auctor at, ultricies quis risus. Mauris ac mi in lacus faucibus facilisis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce placerat tristique nulla quis eleifend.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="thumbnail">
+          <img src="assets/images/0415703.jpg" alt="...">
+          <div class="caption">
+            <h3>Thumbnail label</h3>
+            <p><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2">Launch demo modal</button></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModal3Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModal3Label">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed magna et orci vulputate sollicitudin. Vivamus enim nunc, eleifend quis lacinia quis, pharetra a nulla. Curabitur lectus erat, facilisis sit amet orci lobortis, tincidunt auctor mauris. Mauris tincidunt maximus ipsum, non ultricies nunc tempus nec. Curabitur non felis vitae dolor pharetra tempor iaculis ut neque. Phasellus varius dapibus erat, vitae lobortis libero efficitur vitae. Morbi sit amet fringilla ipsum. Donec eleifend dictum eros, eu finibus sem suscipit eget. Quisque eleifend sollicitudin porta. Donec ultrices ut augue ut convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus nec nisl nec enim condimentum posuere auctor quis eros. Quisque mollis dapibus tristique. Pellentesque lacinia molestie consectetur.
+
+Phasellus mollis sapien placerat nibh placerat fringilla. Nullam blandit porta lectus at maximus. Mauris euismod lorem a turpis eleifend, eget fermentum diam facilisis. Maecenas hendrerit risus id maximus mollis. Cras ac diam non nisi pulvinar volutpat sed iaculis arcu. Nullam lacus nunc, condimentum at purus eu, placerat venenatis libero. Sed mattis velit ac nulla porta, sit amet vulputate nulla imperdiet.
+
+Donec pulvinar nibh ut tellus dignissim egestas. Aliquam sed lacinia nibh. Nulla sed nisl at ex volutpat sollicitudin cursus vel ligula. Proin hendrerit dui a risus facilisis, nec euismod dolor semper. Aenean eget efficitur odio, in commodo sem. Sed convallis felis vitae diam rhoncus, vitae efficitur lectus rutrum. Nam luctus augue ligula, eget feugiat nisi imperdiet nec.
+
+Sed id elementum eros, tempor ultrices augue. Morbi ac turpis efficitur, viverra nibh non, aliquam libero. Aliquam laoreet risus diam, a venenatis est venenatis ac. Morbi sed tellus mollis, efficitur odio et, varius neque. Vivamus bibendum nisi justo, sit amet rhoncus risus scelerisque quis. In a nisi in nulla porttitor interdum. Cras bibendum mattis arcu, in porttitor quam viverra ac. Nullam et congue felis. Pellentesque posuere justo eget tempor volutpat. Sed in lorem a sapien dignissim dapibus id sed ipsum. Nulla non libero eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc malesuada metus vel mi pellentesque dignissim. Sed vel eros non risus consectetur finibus. Nam eleifend imperdiet quam, et suscipit justo sollicitudin eget.
+
+Nullam blandit velit vel felis pretium molestie. Pellentesque maximus ullamcorper eros nec vulputate. Aliquam tempor tortor massa, non efficitur lectus gravida ac. Nam vestibulum odio a arcu gravida scelerisque. Suspendisse potenti. Maecenas eu purus semper nisi accumsan ullamcorper. Aliquam vitae pharetra orci, eget auctor dui. Integer in neque nec nunc tincidunt ornare at ut nisi. Ut fringilla nisi eu nisl finibus mattis. Quisque et tortor faucibus, efficitur enim vulputate, gravida ex. Duis egestas auctor est vitae bibendum. Nullam non dapibus nisi, eu accumsan enim. Donec vitae odio ipsum. Vestibulum feugiat mollis enim a vestibulum.
+
+Aenean quis ultricies leo. Integer at risus est. Nulla facilisi. Phasellus molestie nisi nec nisi laoreet fermentum. Nunc felis dui, cursus id auctor at, ultricies quis risus. Mauris ac mi in lacus faucibus facilisis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce placerat tristique nulla quis eleifend.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="thumbnail">
+          <img src="assets/images/0415704.jpg" alt="...">
+          <div class="caption">
+            <h3>Thumbnail label</h3>
+            <p>...</p>
+            <p><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal3">
+          Launch demo modal
+        </button></p>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModal4Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModal4Label">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed magna et orci vulputate sollicitudin. Vivamus enim nunc, eleifend quis lacinia quis, pharetra a nulla. Curabitur lectus erat, facilisis sit amet orci lobortis, tincidunt auctor mauris. Mauris tincidunt maximus ipsum, non ultricies nunc tempus nec. Curabitur non felis vitae dolor pharetra tempor iaculis ut neque. Phasellus varius dapibus erat, vitae lobortis libero efficitur vitae. Morbi sit amet fringilla ipsum. Donec eleifend dictum eros, eu finibus sem suscipit eget. Quisque eleifend sollicitudin porta. Donec ultrices ut augue ut convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus nec nisl nec enim condimentum posuere auctor quis eros. Quisque mollis dapibus tristique. Pellentesque lacinia molestie consectetur.
+
+Phasellus mollis sapien placerat nibh placerat fringilla. Nullam blandit porta lectus at maximus. Mauris euismod lorem a turpis eleifend, eget fermentum diam facilisis. Maecenas hendrerit risus id maximus mollis. Cras ac diam non nisi pulvinar volutpat sed iaculis arcu. Nullam lacus nunc, condimentum at purus eu, placerat venenatis libero. Sed mattis velit ac nulla porta, sit amet vulputate nulla imperdiet.
+
+Donec pulvinar nibh ut tellus dignissim egestas. Aliquam sed lacinia nibh. Nulla sed nisl at ex volutpat sollicitudin cursus vel ligula. Proin hendrerit dui a risus facilisis, nec euismod dolor semper. Aenean eget efficitur odio, in commodo sem. Sed convallis felis vitae diam rhoncus, vitae efficitur lectus rutrum. Nam luctus augue ligula, eget feugiat nisi imperdiet nec.
+
+Sed id elementum eros, tempor ultrices augue. Morbi ac turpis efficitur, viverra nibh non, aliquam libero. Aliquam laoreet risus diam, a venenatis est venenatis ac. Morbi sed tellus mollis, efficitur odio et, varius neque. Vivamus bibendum nisi justo, sit amet rhoncus risus scelerisque quis. In a nisi in nulla porttitor interdum. Cras bibendum mattis arcu, in porttitor quam viverra ac. Nullam et congue felis. Pellentesque posuere justo eget tempor volutpat. Sed in lorem a sapien dignissim dapibus id sed ipsum. Nulla non libero eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc malesuada metus vel mi pellentesque dignissim. Sed vel eros non risus consectetur finibus. Nam eleifend imperdiet quam, et suscipit justo sollicitudin eget.
+
+Nullam blandit velit vel felis pretium molestie. Pellentesque maximus ullamcorper eros nec vulputate. Aliquam tempor tortor massa, non efficitur lectus gravida ac. Nam vestibulum odio a arcu gravida scelerisque. Suspendisse potenti. Maecenas eu purus semper nisi accumsan ullamcorper. Aliquam vitae pharetra orci, eget auctor dui. Integer in neque nec nunc tincidunt ornare at ut nisi. Ut fringilla nisi eu nisl finibus mattis. Quisque et tortor faucibus, efficitur enim vulputate, gravida ex. Duis egestas auctor est vitae bibendum. Nullam non dapibus nisi, eu accumsan enim. Donec vitae odio ipsum. Vestibulum feugiat mollis enim a vestibulum.
+
+Aenean quis ultricies leo. Integer at risus est. Nulla facilisi. Phasellus molestie nisi nec nisi laoreet fermentum. Nunc felis dui, cursus id auctor at, ultricies quis risus. Mauris ac mi in lacus faucibus facilisis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce placerat tristique nulla quis eleifend.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="thumbnail">
+          <img src="assets/images/0415705.jpg" alt="...">
+          <div class="caption">
+            <h3>Thumbnail label</h3>
+            <p>...</p>
+            <p><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal4">Launch demo modal</button></p>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModal5Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModal5Label">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed magna et orci vulputate sollicitudin. Vivamus enim nunc, eleifend quis lacinia quis, pharetra a nulla. Curabitur lectus erat, facilisis sit amet orci lobortis, tincidunt auctor mauris. Mauris tincidunt maximus ipsum, non ultricies nunc tempus nec. Curabitur non felis vitae dolor pharetra tempor iaculis ut neque. Phasellus varius dapibus erat, vitae lobortis libero efficitur vitae. Morbi sit amet fringilla ipsum. Donec eleifend dictum eros, eu finibus sem suscipit eget. Quisque eleifend sollicitudin porta. Donec ultrices ut augue ut convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus nec nisl nec enim condimentum posuere auctor quis eros. Quisque mollis dapibus tristique. Pellentesque lacinia molestie consectetur.
+
+Phasellus mollis sapien placerat nibh placerat fringilla. Nullam blandit porta lectus at maximus. Mauris euismod lorem a turpis eleifend, eget fermentum diam facilisis. Maecenas hendrerit risus id maximus mollis. Cras ac diam non nisi pulvinar volutpat sed iaculis arcu. Nullam lacus nunc, condimentum at purus eu, placerat venenatis libero. Sed mattis velit ac nulla porta, sit amet vulputate nulla imperdiet.
+
+Donec pulvinar nibh ut tellus dignissim egestas. Aliquam sed lacinia nibh. Nulla sed nisl at ex volutpat sollicitudin cursus vel ligula. Proin hendrerit dui a risus facilisis, nec euismod dolor semper. Aenean eget efficitur odio, in commodo sem. Sed convallis felis vitae diam rhoncus, vitae efficitur lectus rutrum. Nam luctus augue ligula, eget feugiat nisi imperdiet nec.
+
+Sed id elementum eros, tempor ultrices augue. Morbi ac turpis efficitur, viverra nibh non, aliquam libero. Aliquam laoreet risus diam, a venenatis est venenatis ac. Morbi sed tellus mollis, efficitur odio et, varius neque. Vivamus bibendum nisi justo, sit amet rhoncus risus scelerisque quis. In a nisi in nulla porttitor interdum. Cras bibendum mattis arcu, in porttitor quam viverra ac. Nullam et congue felis. Pellentesque posuere justo eget tempor volutpat. Sed in lorem a sapien dignissim dapibus id sed ipsum. Nulla non libero eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc malesuada metus vel mi pellentesque dignissim. Sed vel eros non risus consectetur finibus. Nam eleifend imperdiet quam, et suscipit justo sollicitudin eget.
+
+Nullam blandit velit vel felis pretium molestie. Pellentesque maximus ullamcorper eros nec vulputate. Aliquam tempor tortor massa, non efficitur lectus gravida ac. Nam vestibulum odio a arcu gravida scelerisque. Suspendisse potenti. Maecenas eu purus semper nisi accumsan ullamcorper. Aliquam vitae pharetra orci, eget auctor dui. Integer in neque nec nunc tincidunt ornare at ut nisi. Ut fringilla nisi eu nisl finibus mattis. Quisque et tortor faucibus, efficitur enim vulputate, gravida ex. Duis egestas auctor est vitae bibendum. Nullam non dapibus nisi, eu accumsan enim. Donec vitae odio ipsum. Vestibulum feugiat mollis enim a vestibulum.
+
+Aenean quis ultricies leo. Integer at risus est. Nulla facilisi. Phasellus molestie nisi nec nisi laoreet fermentum. Nunc felis dui, cursus id auctor at, ultricies quis risus. Mauris ac mi in lacus faucibus facilisis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce placerat tristique nulla quis eleifend.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="thumbnail">
+          <img src="assets/images/0415706.jpg" alt="...">
+          <div class="caption">
+            <h3>Thumbnail label</h3>
+            <p>...</p>
+            <p><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal5">Launch demo modal</button></p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </ul>
+  </div>
+  <div class='col-xs-3'>
+    <h3>Top 10 Códigos Postales</h3>
+    <ul class="list-group">
+      {% for cod in codPostales %}
+        <li class="list-group-item">
+          {{ cod }}
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 
 {% endblock %}
